@@ -18,6 +18,23 @@
     } else {
         console.log(`${kata} bukan palindrome`);
     }
+
+    //Jawaban kedua
+    let text = "madam"
+    let isPalindrome = true // nilai awalnya diasumsikan sebagai true
+
+    for (let i = 0; i < text.length / 2; i++) {
+        if (text[i] !== text[text.length - 1 - i]) {
+            isPalindrome = false
+        }
+    }
+
+    if (isPalindrome) {
+        console.log(text + " -> palindrome")
+    } else {
+        console.log(text + " -> not a palindrome")
+    }
+
 }
 
 {
@@ -34,6 +51,43 @@
     let searchStr = "ell";
     let strBaru = str.replace(searchStr, '');
     console.log(strBaru);
+
+    //Jawaban kedua
+    let mainString = "Hello World"
+    let search = "ell"
+    let result = ""
+
+    let found = -1
+
+    // cari posisi pertama search di dalam mainString
+    for (let i = 0; i <= mainString.length - search.length; i++) {
+        let match = true
+
+        for (let j = 0; j < search.length; j++) {
+            if (mainString[i + j] !== search[j]) {
+                match = false
+            }
+        }
+
+        if (match) {
+            found = i
+        }
+    }
+
+    // bangun string baru tanpa substring yang dicari
+    if (found !== -1) {
+        for (let i = 0; i < mainString.length; i++) {
+            if (i >= found && i < found + search.length) {
+                continue // lewati karakter search
+            }
+
+            result += mainString[i]
+        }
+    } else {
+        result = mainString // kalau tidak ketemu
+    }
+
+    console.log(result)
 }
 
 {
@@ -41,6 +95,25 @@
     let duid = 1000;
     let idr = duid.toLocaleString('id-ID', {style: 'currency', currency: 'IDR'});
     console.log(idr);
+
+    //Jawaban kedua
+    let numberIDR = 1000000
+    let str = String(numberIDR)
+    let result = "" // untuk menampung hasil konversi
+
+    // kita akan sisipkan titik setiap 3 digit dari belakang
+    let count = 0
+
+    for (let i = str.length - 1; i >= 0; i--) {
+        result = str[i] + result
+        count++
+        if (count % 3 === 0 && i !== 0) {
+            result = "." + result
+        }
+    }
+
+    let currency = "Rp. " + result + ",00"
+    console.log(currency)
 }
 
 {
@@ -48,5 +121,31 @@
     let str = "hello world";
     let strKapital = str.charAt(0).toUpperCase() + str.slice(1);
     console.log(strKapital);
+
+    //Jawaban kedua
+    let text = "hello world"
+    let result = ""
+    let capitalize = true
+
+    for (let i = 0; i < text.length; i++) {
+        let char = text[i]
+
+        if (capitalize && char !== "") {
+
+            // ubah ke huruf besar
+            let code = char.charCodeAt(0)
+            if (code >= 97 && code <= 122) {
+                char = String.fromCharCode(code - 32) // ubah ke uppercase lewat table ascii
+            }
+
+            capitalize = false
+        } else if (char === " ") {
+            capitalize = true
+        }
+
+        result += char
+    }
+
+    console.log(result)
 
 }
